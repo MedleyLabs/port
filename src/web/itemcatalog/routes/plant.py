@@ -17,6 +17,8 @@ def get_plants():
     plants = Plant.query.all()
     response = jsonify([p.as_dict() for p in plants])
 
+    print('/plant response:', response)
+
     return response
 
 
