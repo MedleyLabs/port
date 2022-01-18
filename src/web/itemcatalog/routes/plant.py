@@ -7,9 +7,18 @@ from itemcatalog.models.plant import Plant
 plant = Blueprint('plant', __name__)
 
 
+@plant.route("/plant", methods=['GET'])
+def get_plants():
+    """ """
+
+    plants = Plant.query.all()
+
+    return plants
+
+
 @plant.route("/plant/create", methods=['GET', 'POST'])
 def create_plant():
-    """ CREATE Plant """
+    """ Creates a new plant """
 
     print('CREATE plant...')
 
