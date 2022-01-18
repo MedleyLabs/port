@@ -1,5 +1,8 @@
-from flask import (render_template, url_for, request,
-                   redirect, Blueprint, abort, flash)
+from flask import (
+    Blueprint,
+    jsonify,
+    request,
+)
 
 from itemcatalog import db
 from itemcatalog.models.plant import Plant
@@ -13,7 +16,9 @@ def get_plants():
 
     plants = Plant.query.all()
 
-    return plants
+    response = {"plants": plants}
+
+    return response
 
 
 @plant.route("/plant/create", methods=['GET', 'POST'])
