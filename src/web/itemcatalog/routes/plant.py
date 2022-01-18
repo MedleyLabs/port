@@ -15,10 +15,9 @@ def get_plants():
     """ """
 
     plants = Plant.query.all()
+    response = jsonify([p.as_dict() for p in plants])
 
-    plants = [p.as_dict() for p in plants]
-
-    return jsonify(plants)
+    return response
 
 
 @plant.route("/plant/create", methods=['GET', 'POST'])
