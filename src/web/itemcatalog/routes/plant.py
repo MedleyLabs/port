@@ -26,7 +26,7 @@ def get_plant():
 
 
 @plant.route("/plant/name", methods=['GET'])
-def get_plant():
+def get_plant_name():
     """ """
 
     print('Running /plant/name...')
