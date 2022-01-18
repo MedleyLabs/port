@@ -43,6 +43,20 @@ def get_plant_name():
     return response
 
 
+@plant.route("/plant/name/<str: name>", methods=['GET'])
+def get_plant_by_name(name):
+    """ """
+
+    print(f'Running /plant/name/{name}...')
+
+    plant_obj = Plant.query.filter(Plant.name == name).first()
+    response = jsonify(plant_obj)
+
+    print('/plant/name response:', response.__dict__)
+
+    return response
+
+
 @plant.route("/plant/create", methods=['POST'])
 def create_plant():
     """ Creates a new plant """
@@ -69,7 +83,7 @@ def create_plant():
 
 
 @plant.route("/plant/water", methods=['POST'])
-def water_plant():
+def create_water_entry():
     """ Records the plant being watered """
 
     print('Running /plant/water...')
