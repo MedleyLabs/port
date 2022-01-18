@@ -11,8 +11,10 @@ plant = Blueprint('plant', __name__)
 
 
 @plant.route("/plant", methods=['GET'])
-def get_plants():
+def get_plant():
     """ """
+
+    print('Running /plant...')
 
     plants = Plant.query.all()
     plants = [p.as_dict() for p in plants]
@@ -23,11 +25,26 @@ def get_plants():
     return response
 
 
+@plant.route("/plant/name", methods=['GET'])
+def get_plant():
+    """ """
+
+    print('Running /plant/name...')
+
+    plants = Plant.query.all()
+    plants = [p.as_dict()['name'] for p in plants]
+    response = jsonify(plants)
+
+    print('/plant/name response:', response.__dict__)
+
+    return response
+
+
 @plant.route("/plant/create", methods=['GET', 'POST'])
 def create_plant():
     """ Creates a new plant """
 
-    print('CREATE plant...')
+    print('Running /plant/create...')
 
     r = request.get_json()
 
@@ -41,6 +58,6 @@ def create_plant():
     db.session.add(new_plant)
     db.session.commit()
 
-    print('Success!')
+    print(f'''Added plant with name "{r['name']}"!''')
 
     return 'Success!'
