@@ -14,7 +14,7 @@ plant = Blueprint('plant', __name__)
 
 
 @plant.route("/plant", methods=['GET'])
-def get_plant():
+def get_plants():
     """ """
 
     print('Running /plant...')
@@ -29,28 +29,14 @@ def get_plant():
 
 
 @plant.route("/plant/name", methods=['GET'])
-def get_plant_name():
+def get_plant_names():
     """ """
 
-    print('Running /plant/name...')
+    print('Running GET /plant/name...')
 
     plants = Plant.query.all()
     plants = [p.as_dict()['name'] for p in plants]
     response = jsonify(plants)
-
-    print('/plant/name response:', response.__dict__)
-
-    return response
-
-
-@plant.route("/plant/name/<str:name>", methods=['GET'])
-def get_plant_by_name(name):
-    """ """
-
-    print(f'Running /plant/name/{name}...')
-
-    plant_obj = Plant.query.filter(Plant.name == name).first()
-    response = jsonify(plant_obj)
 
     print('/plant/name response:', response.__dict__)
 
@@ -80,6 +66,24 @@ def create_plant():
     print(f'''Added plant with name "{r['name']}"!''')
 
     return jsonify({"status_code": 200})
+
+
+@plant.route("/plant/update", methods=['POST'])
+def update_plant_by_name():
+    """ """
+
+    print(f'Running POST /plant/name...')
+
+    r = request.get_json()
+
+    print('Request data:', r)
+
+    plant_obj = Plant.query.filter(Plant.name == r['name']).first()
+    response = jsonify(plant_obj)
+
+    print('/plant/name response:', response.__dict__)
+
+    return response
 
 
 @plant.route("/plant/water", methods=['POST'])
