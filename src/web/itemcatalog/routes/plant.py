@@ -43,7 +43,7 @@ def get_plant_name():
     return response
 
 
-@plant.route("/plant/name/<str: name>", methods=['GET'])
+@plant.route("/plant/name/<str:name>", methods=['GET'])
 def get_plant_by_name(name):
     """ """
 
