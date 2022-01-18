@@ -1,4 +1,4 @@
-from . import db
+from . import db, ma
 from datetime import datetime
 
 
@@ -13,3 +13,9 @@ class Plant(db.Model):
     days_between_water = db.Column(db.Integer, nullable=False)
     days_between_fertilizer = db.Column(db.Integer, nullable=False)
     days_between_repot = db.Column(db.Integer, nullable=False)
+
+
+class PlantSchema(ma.ModelSchema):
+    """Define marshmallow schema"""
+    class Meta:
+        model = Plant
