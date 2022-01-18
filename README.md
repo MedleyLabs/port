@@ -15,16 +15,6 @@
 * `pip-env`
 * `git`
 
-## Screens
-
-![screen shot 2018-10-11 at 1 07 18 am](https://user-images.githubusercontent.com/4943759/46782936-318ac800-ccf6-11e8-8882-1909ec48a332.png)
-
-![screen shot 2018-10-11 at 12 44 56 am](https://user-images.githubusercontent.com/4943759/46781311-f89b2500-ccee-11e8-8cca-7db4ab5ba128.png)
-
-![screen shot 2018-10-11 at 12 54 56 am](https://user-images.githubusercontent.com/4943759/46781655-ae1aa800-ccf0-11e8-9215-633493a16738.png)
-
-![screen shot 2018-10-11 at 1 04 03 am](https://user-images.githubusercontent.com/4943759/46782943-364f7c00-ccf6-11e8-92b2-124ed5ec5a7f.png)
-
 ## Values
 
 * `Clean, Readable Code and Design.` 
