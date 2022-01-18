@@ -14,6 +14,9 @@ class Plant(db.Model):
     days_between_fertilizer = db.Column(db.Integer, nullable=False)
     days_between_repot = db.Column(db.Integer, nullable=False)
 
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 
 class PlantSchema(ma.ModelSchema):
     """Define marshmallow schema"""
