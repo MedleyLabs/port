@@ -13,7 +13,7 @@ def create_plant():
 
     print('CREATE plant...')
 
-    r = request.data
+    r = request.get_json()
 
     print('Request data:', r)
 
