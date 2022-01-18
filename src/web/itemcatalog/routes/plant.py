@@ -65,7 +65,7 @@ def create_plant():
 
     print(f'''Added plant with name "{r['name']}"!''')
 
-    return 'Success!'
+    return {"status_code": 200}
 
 
 @plant.route("/plant/water", methods=['POST'])
@@ -86,3 +86,5 @@ def water_plant():
 
     db.session.add(new_water_entry)
     db.session.commit()
+
+    return {"status_code": 200}
