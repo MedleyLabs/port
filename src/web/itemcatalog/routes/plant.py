@@ -18,7 +18,7 @@ def get_plants():
 
     response = {"plants": plants}
 
-    return response
+    return jsonify(response)
 
 
 @plant.route("/plant/create", methods=['GET', 'POST'])
