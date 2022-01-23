@@ -13,28 +13,27 @@ def load_user(user_id):
     :param unicode user_id: user_id user to retrieve
 
     """
-    return User.query.get(int(user_id))
+    return Self.query.sort_by(Self.created_at.asc()).all()[-1]
 
 
-class User(db.Model, UserMixin):
-    """Model to define User"""
+class Self(db.Model, UserMixin):
+    """ Defines attributes about yourself """
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250), nullable=False)
-    email = db.Column(db.String(250), nullable=False)
-    items = db.relationship('Item', backref='user', lazy=True)
-    time_inserted = db.Column(db.DateTime(), default=datetime.utcnow)
-    time_updated = db.Column(db.DateTime(), default=datetime.utcnow)
+    first_name = db.Column(db.String(128))
+    last_name = db.Column(db.String(128))
+    email = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
 
     @classmethod
     def seed(cls, fake):
         """class utility to create fake accounts to see the db"""
-        user = User(
+        self = Self(
             name=fake.name(),
             email=fake.email()
         )
-        user.save()
+        self.save()
 
     def save(self):
         """persists obj to db"""
@@ -45,9 +44,9 @@ class User(db.Model, UserMixin):
             db.session.rollback()
 
 
-class UserAuth(db.Model, OAuthConsumerMixin):
-    """Model to define UserAuth to store oAuth tokens"""
-    __tablename__ = 'userauth'
+class SelfAuth(db.Model, OAuthConsumerMixin):
+    """Model to define SelfAuth to store oAuth tokens"""
+    __tablename__ = 'selfauth'
 
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    user = db.relationship(User)
+    user_id = db.Column(db.Integer, db.ForeignKey(Self.id))
+    user = db.relationship(Self)
