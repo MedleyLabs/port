@@ -20,7 +20,7 @@ def get_plants():
     print('Running /plant...')
 
     plants = Plant.query.all()
-    plants = [p.as_dict() for p in plants]
+    plants = [p.to_dict() for p in plants]
     response = jsonify(plants)
 
     print('/plant response:', response.__dict__)
@@ -35,7 +35,7 @@ def get_plant_names():
     print('Running GET /plant/name...')
 
     plants = Plant.query.all()
-    plants = [p.as_dict()['name'] for p in plants]
+    plants = [p.to_dict()['name'] for p in plants]
     response = jsonify(plants)
 
     print('/plant/name response:', response.__dict__)

@@ -1,8 +1,10 @@
 from datetime import datetime
+
 from . import db, ma
+from .base_model import BaseModel
 
 
-class Item(db.Model):
+class Item(BaseModel):
     """Model to define Item"""
 
     __tablename__ = 'items'

@@ -1,12 +1,14 @@
-from . import db, ma
-from .item import Item, ItemSchema
 from datetime import datetime
 from marshmallow import fields
 from sqlalchemy import exc, select, func
 from sqlalchemy.ext.hybrid import hybrid_property
 
+from . import db, ma
+from .base_model import BaseModel
+from .item import Item, ItemSchema
 
-class Category(db.Model):
+
+class Category(BaseModel):
     """Model to define Category"""
     __tablename__ = 'category'
 

@@ -1,9 +1,11 @@
-from . import db
 from datetime import datetime
-from itemcatalog import login_manager
 from flask_login import UserMixin
 from flask_dance.consumer.backend.sqla import OAuthConsumerMixin
 from sqlalchemy import exc
+
+from . import db
+from .base_model import BaseModel
+from itemcatalog import login_manager
 
 
 @login_manager.user_loader
@@ -14,7 +16,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-class User(db.Model, UserMixin):
+class User(BaseModel, UserMixin):
     """Model to define User"""
     __tablename__ = 'user'
 
@@ -43,7 +45,7 @@ class User(db.Model, UserMixin):
             db.session.rollback()
 
 
-class UserAuth(db.Model, OAuthConsumerMixin):
+class UserAuth(BaseModel, OAuthConsumerMixin):
     """Model to define UserAuth to store oAuth tokens"""
     __tablename__ = 'userauth'
 

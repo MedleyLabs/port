@@ -1,22 +1,19 @@
 from . import db
-from datetime import datetime
+from .base_model import BaseModel
 
 
-class Shortcut(db.Model):
+class Shortcut(BaseModel):
     """ Each instance represnts the plant being watered """
     __tablename__ = 'shortcut'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(50), unique=True, nullable=False)
     download_url = db.Column(db.String(500), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
 
-    def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
-
-class ShortcutDependencies(db.Model):
+class ShortcutDependencies(BaseModel):
     """ Sets the dependency chain for shortcut downloads """
     __tablename__ = 'shortcut_dependencies'
 
