@@ -20,6 +20,8 @@ def get_shortcuts():
     print('Running /shortcut...')
 
     shortcuts = Shortcut.query.all()
+    shortcuts = [dict(p) for p in shortcuts]
+
     response = jsonify(shortcuts)
 
     print('/shortcut response:', response)
