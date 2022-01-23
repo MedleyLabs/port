@@ -1,5 +1,5 @@
 FROM python:3.7.0-slim
-LABEL maintainer "Eric Gu <eric.changning.gu@gmail.com>"
+LABEL maintainer "Eric Yates <eric@medleyagency.com>"
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
