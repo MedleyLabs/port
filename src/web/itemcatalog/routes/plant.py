@@ -96,9 +96,9 @@ def create_water_entry():
 
     print('Request data:', r)
 
-    for plant_name in r['plant_names']:
+    for name in r['plant_names']:
 
-        plant_id = Plant.query.filter(name=plant_name).first()
+        plant_id = Plant.query.filter(Plant.name == name).first()
 
         new_water_entry = WaterEntry(
             plant_id=plant_id,
