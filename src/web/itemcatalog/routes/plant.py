@@ -105,7 +105,7 @@ def create_water_entry():
             created_at=r['datetime'],
         )
 
-    db.session.add(new_water_entry)
-    db.session.commit()
+        db.session.add(new_water_entry)
+        db.session.commit()
 
     return jsonify({"status_code": 200})
