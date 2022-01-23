@@ -10,7 +10,7 @@ class Shortcut(db.Model):
     name = db.Column(db.String(30), nullable=False)
     download_url = db.Column(db.String(500), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
-    is_active = db.Columnn(db.Boolean, nullable=False)
+    is_active = db.Column(db.Boolean, nullable=False)
 
 
 class ShortcutDependencies(db.Model):
