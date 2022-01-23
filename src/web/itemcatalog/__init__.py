@@ -35,6 +35,7 @@ from itemcatalog.routes.category import category # noqa:E401
 from itemcatalog.routes.item import item # noqa:E401
 from itemcatalog.routes.main import main # noqa:E401
 from itemcatalog.routes.plant import plant # noqa:E401
+from itemcatalog.routes.shortcut import shortcut
 from itemcatalog.routes.errorhandlers import errorhandlers # noqa:E401
 
 app.register_blueprint(userauth)
@@ -42,6 +43,7 @@ app.register_blueprint(category)
 app.register_blueprint(item)
 app.register_blueprint(main)
 app.register_blueprint(plant)
+app.register_blueprint(shortcut)
 app.register_blueprint(errorhandlers)
 
 if __name__ == '__main__':
