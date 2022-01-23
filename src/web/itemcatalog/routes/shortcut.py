@@ -53,11 +53,9 @@ def create_shortcut():
 
     print('Request data:', r)
 
-    new_shortcut = Shortcut(
-        name=r['name'],
-    )
+    new_shortcut = Shortcut(**r)
 
-    db.session.add(shortcut)
+    db.session.add(new_shortcut)
     db.session.commit()
 
     print(f'''Added shortcut with name "{r['name']}"!''')
