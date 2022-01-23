@@ -14,7 +14,7 @@ app.config.from_object('config.settings.' + os.environ['ENV'])
 login_manager = LoginManager(app)
 
 # Database
-from .models import db, user, category, item, plant, ma # noqa:E401
+from .models import db, user, category, item, plant, shortcut, ma # noqa:E401
 db.create_all()
 db.session.commit()
 
