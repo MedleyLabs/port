@@ -28,7 +28,6 @@ class WaterEntry(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
-    amount = db.Column(db.Float())
 
 
 class WaterEntrySchema(ma.ModelSchema):

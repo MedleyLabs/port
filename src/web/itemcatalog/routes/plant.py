@@ -96,11 +96,14 @@ def create_water_entry():
 
     print('Request data:', r)
 
-    new_water_entry = WaterEntry(
-        plant_id=r['plant_id'],
-        created_at=r['datetime'],
-        amount=r['amount']
-    )
+    for plant_name in r['plant_names']:
+
+        plant_id = Plant.query.filter(name=plant_name).first()
+
+        new_water_entry = WaterEntry(
+            plant_id=plant_id,
+            created_at=r['datetime'],
+        )
 
     db.session.add(new_water_entry)
     db.session.commit()
