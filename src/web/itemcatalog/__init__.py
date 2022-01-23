@@ -19,14 +19,14 @@ db.create_all()
 db.session.commit()
 
 # Seed Users and Categories in Database
-if app.config['TESTING'] is True:
-    fake = Faker()
-
-    for _ in range(5):
-        user.User.seed(fake)
-
-    for _ in range(70):
-        category.Category.seed(fake)
+# if app.config['TESTING'] is True:
+#     fake = Faker()
+#
+#     for _ in range(5):
+#         user.User.seed(fake)
+#
+#     for _ in range(70):
+#         category.Category.seed(fake)
 
 
 # Blueprints
