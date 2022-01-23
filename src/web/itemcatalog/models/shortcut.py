@@ -12,6 +12,9 @@ class Shortcut(db.Model):
     created_at = db.Column(db.DateTime(), nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
 
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 
 class ShortcutDependencies(db.Model):
     """ Sets the dependency chain for shortcut downloads """
