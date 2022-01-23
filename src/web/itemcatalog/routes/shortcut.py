@@ -36,6 +36,7 @@ def get_shortcut_names():
     print('Running GET /shortcut/name...')
 
     shortcuts = Shortcut.query.all()
+    shortcuts = [p.as_dict()['name'] for p in shortcuts]
     response = jsonify(shortcuts)
 
     print('/shortcut/name response:', response)
