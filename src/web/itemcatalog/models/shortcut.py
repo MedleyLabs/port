@@ -18,5 +18,5 @@ class ShortcutDependencies(BaseModel):
     __tablename__ = 'shortcut_dependencies'
 
     id = db.Column(db.Integer, primary_key=True)
-    parent = db.ForeignKey('shortcut.id', nullable=False)
-    child = db.ForeignKey('shortcut.id', nullable=False)
+    parent_id = db.ForeignKey('shortcut.id', nullable=False)
+    child_id = db.ForeignKey('shortcut.id', nullable=False)
