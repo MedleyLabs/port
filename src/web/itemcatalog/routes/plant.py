@@ -98,7 +98,12 @@ def create_fertilize_entry():
 
     print('Request data:', r)
 
-    for name in r['plant_names']:
+    plant_names = r['plant_names']
+
+    if type(plant_names) is str:
+        plant_names = [plant_names]
+
+    for name in plant_names:
 
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
@@ -123,7 +128,12 @@ def create_repot_entry():
 
     print('Request data:', r)
 
-    for name in r['plant_names']:
+    plant_names = r['plant_names']
+
+    if type(plant_names) is str:
+        plant_names = [plant_names]
+
+    for name in plant_names:
 
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
@@ -148,7 +158,12 @@ def create_water_entry():
 
     print('Request data:', r)
 
-    for name in r['plant_names']:
+    plant_names = r['plant_names']
+
+    if type(plant_names) is str:
+        plant_names = [plant_names]
+
+    for name in plant_names:
 
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
