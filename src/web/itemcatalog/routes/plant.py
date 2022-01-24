@@ -36,7 +36,7 @@ def get_plant_names():
 
     print('Running GET /plant/name...')
 
-    plants = Plant.query.all()
+    plants = Plant.query.filter(Plant.is_active).all()
     plants = [p.to_dict()['name'] for p in plants]
     response = jsonify(plants)
 
