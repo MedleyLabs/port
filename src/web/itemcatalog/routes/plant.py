@@ -86,6 +86,56 @@ def update_plant_by_name():
     return response
 
 
+@plant.route("/plant/fertilize", methods=['POST'])
+def create_water_entry():
+    """ Records the plant being fertilized """
+
+    print('Running /plant/fertilize...')
+
+    r = request.get_json()
+
+    print('Request data:', r)
+
+    for name in r['plant_names']:
+
+        plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
+
+        new_water_entry = WaterEntry(
+            plant_id=plant_id,
+            created_at=r['datetime'],
+        )
+
+        db.session.add(new_water_entry)
+        db.session.commit()
+
+    return jsonify({"status_code": 200})
+
+
+@plant.route("/plant/repot", methods=['POST'])
+def create_water_entry():
+    """ Records the plant being repotted """
+
+    print('Running /plant/repot...')
+
+    r = request.get_json()
+
+    print('Request data:', r)
+
+    for name in r['plant_names']:
+
+        plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
+
+        new_water_entry = WaterEntry(
+            plant_id=plant_id,
+            created_at=r['datetime'],
+        )
+
+        db.session.add(new_water_entry)
+        db.session.commit()
+
+    return jsonify({"status_code": 200})
+
+
 @plant.route("/plant/water", methods=['POST'])
 def create_water_entry():
     """ Records the plant being watered """
