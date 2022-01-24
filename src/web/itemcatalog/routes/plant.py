@@ -83,7 +83,7 @@ def update_plant():
 
     p = Plant.query.filter(Plant.name == r['name']).first()
 
-    for key, value in r['updates'].keys():
+    for key, value in r['updates'].items():
         setattr(p, key, value)
 
     db.session.commit()
