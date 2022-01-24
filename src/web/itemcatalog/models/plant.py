@@ -15,25 +15,28 @@ class Plant(BaseModel):
     days_between_repot = db.Column(db.Integer, nullable=False)
 
 
-class Entry(BaseModel):
-    """ Generic class for logging a plant care entry """
-    __abstract__ = True
+class FertilizeEntry(BaseModel):
+    """ Tracks when each plant is fertilized """
+    __tablename__ = 'fertilize_entry'
 
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
 
 
-class FertilizeEntry(Entry):
-    """ Tracks when each plant is fertilized """
-    __tablename__ = 'fertilize_entry'
-
-
-class RepotEntry(Entry):
+class RepotEntry(BaseModel):
     """ Tracks when each plant is repotted """
     __tablename__ = 'repot_entry'
 
+    id = db.Column(db.Integer, primary_key=True)
+    plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
+    created_at = db.Column(db.DateTime(), nullable=False)
 
-class WaterEntry(Entry):
+
+class WaterEntry(BaseModel):
     """ Tracks when each plant is watered """
     __tablename__ = 'water_entry'
+
+    id = db.Column(db.Integer, primary_key=True)
+    plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
+    created_at = db.Column(db.DateTime(), nullable=False)
