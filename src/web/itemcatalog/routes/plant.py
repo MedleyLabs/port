@@ -7,6 +7,8 @@ from flask import (
 from itemcatalog import db
 from itemcatalog.models.plant import (
     Plant,
+    FertilizeEntry,
+    RepotEntry,
     WaterEntry,
 )
 
@@ -87,7 +89,7 @@ def update_plant_by_name():
 
 
 @plant.route("/plant/fertilize", methods=['POST'])
-def create_water_entry():
+def create_fertilize_entry():
     """ Records the plant being fertilized """
 
     print('Running /plant/fertilize...')
@@ -100,12 +102,12 @@ def create_water_entry():
 
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
-        new_water_entry = WaterEntry(
+        entry = FertilizeEntry(
             plant_id=plant_id,
             created_at=r['datetime'],
         )
 
-        db.session.add(new_water_entry)
+        db.session.add(entry)
         db.session.commit()
 
     return jsonify({"status_code": 200})
@@ -125,12 +127,12 @@ def create_water_entry():
 
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
-        new_water_entry = WaterEntry(
+        entry = RepotEntry(
             plant_id=plant_id,
             created_at=r['datetime'],
         )
 
-        db.session.add(new_water_entry)
+        db.session.add(entry)
         db.session.commit()
 
     return jsonify({"status_code": 200})
@@ -150,12 +152,12 @@ def create_water_entry():
 
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
-        new_water_entry = WaterEntry(
+        entry = WaterEntry(
             plant_id=plant_id,
             created_at=r['datetime'],
         )
 
-        db.session.add(new_water_entry)
+        db.session.add(entry)
         db.session.commit()
 
     return jsonify({"status_code": 200})
