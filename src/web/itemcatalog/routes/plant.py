@@ -72,21 +72,23 @@ def create_plant():
 
 
 @plant.route("/plant/update", methods=['POST'])
-def update_plant_by_name():
+def update_plant():
     """ """
 
-    print(f'Running POST /plant/name...')
+    print(f'Running POST /plant/update...')
 
     r = request.get_json()
 
     print('Request data:', r)
 
-    plant_obj = Plant.query.filter(Plant.name == r['name']).first()
-    response = jsonify(plant_obj)
+    p = Plant.query.filter(Plant.name == r['name']).first()
 
-    print('/plant/name response:', response.__dict__)
+    for key, value in r['updates'].keys():
+        setattr(p, key, value)
 
-    return response
+    db.session.commit()
+
+    return jsonify({"status_code": 200})
 
 
 @plant.route("/plant/delete", methods=['POST'])
