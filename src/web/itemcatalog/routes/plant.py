@@ -114,7 +114,7 @@ def create_fertilize_entry():
 
 
 @plant.route("/plant/repot", methods=['POST'])
-def create_water_entry():
+def create_repot_entry():
     """ Records the plant being repotted """
 
     print('Running /plant/repot...')
