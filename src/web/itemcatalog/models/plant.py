@@ -13,6 +13,7 @@ class Plant(BaseModel):
     days_between_water = db.Column(db.Integer, nullable=False)
     days_between_fertilizer = db.Column(db.Integer, nullable=False)
     days_between_repot = db.Column(db.Integer, nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
 
 
 class FertilizeEntry(BaseModel):

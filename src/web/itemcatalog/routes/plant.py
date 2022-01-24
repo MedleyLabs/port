@@ -19,7 +19,7 @@ plant = Blueprint('plant', __name__)
 def get_plants():
     """ """
 
-    print('Running /plant...')
+    print('Running GET /plant...')
 
     plants = Plant.query.all()
     plants = [p.to_dict() for p in plants]
@@ -49,7 +49,7 @@ def get_plant_names():
 def create_plant():
     """ Creates a new plant """
 
-    print('Running /plant/create...')
+    print('Running POST /plant/create...')
 
     r = request.get_json()
 
@@ -88,11 +88,35 @@ def update_plant_by_name():
     return response
 
 
+@plant.route("/plant/delete", methods=['POST'])
+def delete_plants():
+    """ Note that this unchecks the is_active field, not deleting the row """
+
+    print('Running POST /plant/delete...')
+
+    r = request.get_json()
+
+    print('Request data:', r)
+
+    plant_names = r['plant_names']
+
+    if type(plant_names) is str:
+        plant_names = [plant_names]
+
+    for name in plant_names:
+        p = Plant.query.filter(Plant.name == name).first()
+        p.is_active = False
+
+        db.session.commit()
+
+    return jsonify({"status_code": 200})
+
+
 @plant.route("/plant/fertilize", methods=['POST'])
 def create_fertilize_entry():
     """ Records the plant being fertilized """
 
-    print('Running /plant/fertilize...')
+    print('Running POST /plant/fertilize...')
 
     r = request.get_json()
 
@@ -122,7 +146,7 @@ def create_fertilize_entry():
 def create_repot_entry():
     """ Records the plant being repotted """
 
-    print('Running /plant/repot...')
+    print('Running POST /plant/repot...')
 
     r = request.get_json()
 
@@ -152,7 +176,7 @@ def create_repot_entry():
 def create_water_entry():
     """ Records the plant being watered """
 
-    print('Running /plant/water...')
+    print('Running POST /plant/water...')
 
     r = request.get_json()
 
