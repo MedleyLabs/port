@@ -15,22 +15,25 @@ class Plant(BaseModel):
     days_between_repot = db.Column(db.Integer, nullable=False)
 
 
-class PlantSchema(ma.ModelSchema):
-    """Define marshmallow schema"""
-    class Meta:
-        model = Plant
-
-
-class WaterEntry(BaseModel):
-    """ Each instance represnts the plant being watered """
-    __tablename__ = 'water_entry'
+class Entry(BaseModel):
+    """ Generic class for logging a plant care entry """
+    __abstract__ = True
 
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
 
 
-class WaterEntrySchema(ma.ModelSchema):
-    """Define marshmallow schema"""
-    class Meta:
-        model = WaterEntry
+class FertilizeEntry(Entry):
+    """ Tracks when each plant is fertilized """
+    __tablename__ = 'fertilize_entry'
+
+
+class RepotEntry(Entry):
+    """ Tracks when each plant is repotted """
+    __tablename__ = 'repot_entry'
+
+
+class WaterEntry(Entry):
+    """ Tracks when each plant is watered """
+    __tablename__ = 'water_entry'
