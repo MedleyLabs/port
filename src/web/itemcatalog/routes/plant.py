@@ -76,7 +76,7 @@ def get_plant_statuses():
             date_delta = (current_date-last_date).days
             print('Date delta:', date_delta)
 
-            if date_delta > days_between_water:
+            if date_delta >= days_between_water:
                 print('Time to water!')
             else:
                 print('Chill.')
