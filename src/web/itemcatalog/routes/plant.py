@@ -66,20 +66,23 @@ def get_plant_statuses():
 
         print(f'Entries:', entries)
 
-        last_date = entries[-1].created_at
-        last_date = datetime.strptime(last_date, '%d%d%b%Y').date()
+        if entries:
+            last_date = entries[-1].created_at
+            last_date = datetime.strptime(last_date, '%d%d%b%Y').date()
 
-        print('Last date:', last_date)
+            print('Last date:', last_date)
 
-        current_date = datetime.now().date()
+            current_date = datetime.now().date()
 
-        date_delta = (current_date-last_date).days
-        print('Date delta:', date_delta)
+            date_delta = (current_date-last_date).days
+            print('Date delta:', date_delta)
 
-        if date_delta > days_between_water:
-            print('Time to water!')
+            if date_delta > days_between_water:
+                print('Time to water!')
+            else:
+                print('Chill.')
         else:
-            print('Chill.')
+            print('No entries...')
 
     return ''
 
