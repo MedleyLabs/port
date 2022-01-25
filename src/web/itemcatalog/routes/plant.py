@@ -60,7 +60,7 @@ def get_plant_statuses():
 
         print(f'Days between water for {p.name}:', days_between_water)
 
-        entries = WaterEntry.query.filter(WaterEntry.plant_id == p.plant_id) \
+        entries = WaterEntry.query.filter(WaterEntry.plant_id == p.id) \
                                   .order_by(WaterEntry.created_at.desc()) \
                                   .all()
 
