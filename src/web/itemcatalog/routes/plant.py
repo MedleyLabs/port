@@ -59,14 +59,14 @@ def get_plant_statuses():
     print(plants)
     return
 
-    for p in plants:
-
-    plants = [p.to_dict()['name'] for p in plants]
-    response = jsonify(plants)
-
-    print('/plant/name response:', response.__dict__)
-
-    return response
+    # for p in plants:
+    #
+    # plants = [p.to_dict()['name'] for p in plants]
+    # response = jsonify(plants)
+    #
+    # print('/plant/name response:', response.__dict__)
+    #
+    # return response
 
 
 @plant.route("/plant/create", methods=['POST'])
