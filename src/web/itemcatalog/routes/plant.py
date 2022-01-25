@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import (
     Blueprint,
     jsonify,
@@ -51,22 +52,43 @@ def get_plant_statuses():
 
     print('Running GET /plant/status/water...')
 
-    plants = Plant.query.join(WaterEntry) \
-                        .with_entities(Plant, WaterEntry) \
-                        .filter(Plant.is_active) \
-                        .all()
+    plants = Plant.query.filter(Plant.is_active).all()
 
-    print(plants)
-    return
+    for p in plants:
 
-    # for p in plants:
-    #
-    # plants = [p.to_dict()['name'] for p in plants]
-    # response = jsonify(plants)
-    #
-    # print('/plant/name response:', response.__dict__)
-    #
-    # return response
+        days_between_water = p.days_between_water
+
+        print(f'Days between water for {p.name}:', days_between_water)
+
+        entries = WaterEntry.query.filter(WaterEntry.plant_id == p.plant_id) \
+                                  .order_by(WaterEntry.created_at.desc()) \
+                                  .all()
+
+        print(f'Entries:', entries)
+
+        last_date = entries[-1].created_at
+        last_date = datetime.strptime(last_date, '%d%d%b%Y').date()
+
+        print('Last date:', last_date)
+
+        current_date = datetime.now().date()
+
+        date_delta = (current_date-last_date).days
+        print('Date delta:', date_delta)
+
+        if date_delta > days_between_water:
+            print('Time to water!')
+        else:
+            print('Chill.')
+
+    return ''
+
+    plants = [p.to_dict()['name'] for p in plants]
+    response = jsonify(plants)
+
+    print('/plant/name response:', response.__dict__)
+
+    return response
 
 
 @plant.route("/plant/create", methods=['POST'])
