@@ -67,8 +67,7 @@ def get_plant_statuses():
         print(f'Entries:', entries)
 
         if entries:
-            last_date = entries[-1].created_at
-            last_date = datetime.strptime(last_date, '%d%d%b%Y').date()
+            last_date = entries[-1].created_at.date()
 
             print('Last date:', last_date)
 
