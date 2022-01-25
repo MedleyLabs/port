@@ -45,6 +45,30 @@ def get_plant_names():
     return response
 
 
+@plant.route("/plant/status/water", methods=['GET'])
+def get_plant_statuses():
+    """ Returns a status emoji (green/yellow/red circle) plus its name """
+
+    print('Running GET /plant/status/water...')
+
+    plants = Plant.query.join(WaterEntry) \
+                        .with_entities(Plant, WaterEntry) \
+                        .filter(Plant.is_active) \
+                        .all()
+
+    print(plants)
+    return
+
+    for p in plants:
+
+    plants = [p.to_dict()['name'] for p in plants]
+    response = jsonify(plants)
+
+    print('/plant/name response:', response.__dict__)
+
+    return response
+
+
 @plant.route("/plant/create", methods=['POST'])
 def create_plant():
     """ Creates a new plant """
