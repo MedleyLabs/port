@@ -1,3 +1,4 @@
+import json
 import pytz
 
 from datetime import datetime
@@ -66,21 +67,19 @@ def get_status():
         if '🟢' in combined:
             return '🟢'
 
-    water_status = get_water_status()
-    repot_status = get_repot_status()
-    fertilize_status = get_fertilize_status()
+    water_status = json.load(get_water_status())
+    repot_status = json.load(get_repot_status())
+    fertilize_status = json.load(get_fertilize_status())
 
     status = [
-        f'{extract_highest_status(list(water_status.data))} Water plants',
-        f'{extract_highest_status(list(fertilize_status.data))} Fertilize plants',
-        f'{extract_highest_status(list(repot_status.data))} Repot plants',
+        f'{extract_highest_status(water_status)} Water plants',
+        f'{extract_highest_status(fertilize_status)} Fertilize plants',
+        f'{extract_highest_status(repot_status)} Repot plants',
     ]
 
     response = jsonify(status)
 
     return response
-
-
 
 
 @plant.route("/plant/status/fertilize", methods=['GET'])
