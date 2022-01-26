@@ -50,6 +50,86 @@ def get_plant_names():
     return response
 
 
+@plant.route("/plant/status/ferilize", methods=['GET'])
+def get_plant_statuses():
+    """ Returns a status emoji (green/yellow/red circle) plus its name """
+
+    print('Running GET /plant/status/fertilize...')
+
+    plants = Plant.query.filter(Plant.is_active).all()
+
+    status_names = []
+
+    for p in plants:
+
+        entries = FertilizeEntry.query.filter(FertilizeEntry.plant_id == p.id) \
+                                  .order_by(FertilizeEntry.created_at.desc()) \
+                                  .all()
+
+        current_date = datetime.now(timezone).date()
+
+        if entries:
+            last_date = entries[-1].created_at.date()
+            date_delta = (current_date-last_date).days
+        else:
+            created_date = p.created_at.date()
+            date_delta = (current_date-created_date).days
+
+        if date_delta > p.days_between_fertilize:
+            status_emoji = '🔴'
+        elif date_delta == p.days_between_fertilize:
+            status_emoji = '🟡'
+        else:
+            status_emoji = '🟢'
+
+        status_name = f'{status_emoji} {p.name}'
+        status_names.append(status_name)
+
+    response = jsonify(status_names)
+
+    return response
+
+
+@plant.route("/plant/status/repot", methods=['GET'])
+def get_plant_statuses():
+    """ Returns a status emoji (green/yellow/red circle) plus its name """
+
+    print('Running GET /plant/status/repot...')
+
+    plants = Plant.query.filter(Plant.is_active).all()
+
+    status_names = []
+
+    for p in plants:
+
+        entries = RepotEntry.query.filter(RepotEntry.plant_id == p.id) \
+                                  .order_by(RepotEntry.created_at.desc()) \
+                                  .all()
+
+        current_date = datetime.now(timezone).date()
+
+        if entries:
+            last_date = entries[-1].created_at.date()
+            date_delta = (current_date-last_date).days
+        else:
+            created_date = p.created_at.date()
+            date_delta = (current_date-created_date).days
+
+        if date_delta > p.days_between_repot:
+            status_emoji = '🔴'
+        elif date_delta == p.days_between_repot:
+            status_emoji = '🟡'
+        else:
+            status_emoji = '🟢'
+
+        status_name = f'{status_emoji} {p.name}'
+        status_names.append(status_name)
+
+    response = jsonify(status_names)
+
+    return response
+
+
 @plant.route("/plant/status/water", methods=['GET'])
 def get_plant_statuses():
     """ Returns a status emoji (green/yellow/red circle) plus its name """
