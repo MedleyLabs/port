@@ -17,6 +17,8 @@ from itemcatalog.models.plant import (
 
 plant = Blueprint('plant', __name__)
 
+timezone = pytz.timezone('US/Mountain')
+
 
 @plant.route("/plant", methods=['GET'])
 def get_plants():
@@ -60,43 +62,30 @@ def get_plant_statuses():
 
     for p in plants:
 
-        days_between_water = p.days_between_water
-
         entries = WaterEntry.query.filter(WaterEntry.plant_id == p.id) \
                                   .order_by(WaterEntry.created_at.desc()) \
                                   .all()
 
+        current_date = datetime.now(timezone).date()
+
         if entries:
             last_date = entries[-1].created_at.date()
-
-            timezone = pytz.timezone('US/Mountain')
-            current_date = datetime.now(timezone).date()
-
             date_delta = (current_date-last_date).days
-
-            if date_delta > days_between_water:
-                status_emoji = '🔴'
-            elif date_delta == days_between_water:
-                status_emoji = '🟡'
-            else:
-                status_emoji = '🟢'
-
         else:
+            created_date = p.created_at.date()
+            date_delta = (current_date-created_date).days
+
+        if date_delta > p.days_between_water:
             status_emoji = '🔴'
+        elif date_delta == p.days_between_water:
+            status_emoji = '🟡'
+        else:
+            status_emoji = '🟢'
 
         status_name = f'{status_emoji} {p.name}'
         status_names.append(status_name)
 
     response = jsonify(status_names)
-
-    print('Response:', response)
-
-    return response
-
-    plants = [p.to_dict()['name'] for p in plants]
-    response = jsonify(plants)
-
-    print('/plant/name response:', response.__dict__)
 
     return response
 
