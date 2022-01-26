@@ -67,9 +67,9 @@ def get_status():
         if '🟢' in combined:
             return '🟢'
 
-    water_status = json.load(get_water_status())
-    repot_status = json.load(get_repot_status())
-    fertilize_status = json.load(get_fertilize_status())
+    water_status = json.load(get_water_status().json)
+    repot_status = json.load(get_repot_status().json)
+    fertilize_status = json.load(get_fertilize_status().json)
 
     status = [
         f'{extract_highest_status(water_status)} Water plants',
