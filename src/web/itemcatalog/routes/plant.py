@@ -74,7 +74,7 @@ def get_plant_statuses():
             print('Last date:', last_date)
 
             timezone = pytz.timezone('US/Mountain')
-            current_date = datetime.now(timezone)
+            current_date = datetime.now(timezone).date()
             print('Current_date:', current_date)
 
             date_delta = (current_date-last_date).days
