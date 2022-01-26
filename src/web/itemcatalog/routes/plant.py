@@ -56,6 +56,8 @@ def get_plant_statuses():
 
     plants = Plant.query.filter(Plant.is_active).all()
 
+    status_names = []
+
     for p in plants:
 
         days_between_water = p.days_between_water
@@ -80,15 +82,20 @@ def get_plant_statuses():
             date_delta = (current_date-last_date).days
             print('Date delta:', date_delta)
 
-            if date_delta >= days_between_water:
-                print('Time to water!')
+            if date_delta > days_between_water:
+                status_emoji = '🔴'
+            elif date_delta == days_between_water:
+                status_emoji = '🟡'
             else:
-                print('Chill.')
+                status_emoji = '🟢'
+
+            status_name = status_emoji + p.name
+            status_names.append(status_name)
 
         else:
             print('No entries...')
 
-    return ''
+    return status_names
 
     plants = [p.to_dict()['name'] for p in plants]
     response = jsonify(plants)
