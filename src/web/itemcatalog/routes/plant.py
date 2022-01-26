@@ -1,3 +1,5 @@
+import pytz
+
 from datetime import datetime
 from flask import (
     Blueprint,
@@ -71,7 +73,8 @@ def get_plant_statuses():
 
             print('Last date:', last_date)
 
-            current_date = datetime.now().date()
+            current_date = datetime.now()
+            current_date = pytz.timezone('US/Mountain').localize(current_date).date()
 
             date_delta = (current_date-last_date).days
             print('Date delta:', date_delta)
