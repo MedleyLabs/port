@@ -95,13 +95,9 @@ def get_plant_statuses():
         else:
             print('No entries...')
 
-    print('Status names:', status_names)
+    response = jsonify(status_names)
 
-    response = {
-        'status_names': status_names,
-    }
-
-    return jsonify(response)
+    return response
 
     plants = [p.to_dict()['name'] for p in plants]
     response = jsonify(plants)
