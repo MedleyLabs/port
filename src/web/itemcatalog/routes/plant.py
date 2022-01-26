@@ -62,25 +62,17 @@ def get_plant_statuses():
 
         days_between_water = p.days_between_water
 
-        print(f'Days between water for {p.name}:', days_between_water)
-
         entries = WaterEntry.query.filter(WaterEntry.plant_id == p.id) \
                                   .order_by(WaterEntry.created_at.desc()) \
                                   .all()
 
-        print(f'Entries:', entries)
-
         if entries:
             last_date = entries[-1].created_at.date()
 
-            print('Last date:', last_date)
-
             timezone = pytz.timezone('US/Mountain')
             current_date = datetime.now(timezone).date()
-            print('Current_date:', current_date)
 
             date_delta = (current_date-last_date).days
-            print('Date delta:', date_delta)
 
             if date_delta > days_between_water:
                 status_emoji = '🔴'
@@ -89,13 +81,15 @@ def get_plant_statuses():
             else:
                 status_emoji = '🟢'
 
-            status_name = f'{status_emoji} {p.name}'
-            status_names.append(status_name)
-
         else:
-            print('No entries...')
+            status_emoji = '🔴'
+
+        status_name = f'{status_emoji} {p.name}'
+        status_names.append(status_name)
 
     response = jsonify(status_names)
+
+    print('Response:', response)
 
     return response
 
