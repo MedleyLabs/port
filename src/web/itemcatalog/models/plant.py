@@ -11,7 +11,7 @@ class Plant(BaseModel):
     created_at = db.Column(db.DateTime(), nullable=False)
     updated_at = db.Column(db.DateTime())
     days_between_water = db.Column(db.Integer, nullable=False)
-    days_between_fertilizer = db.Column(db.Integer, nullable=False)
+    days_between_fertilize = db.Column(db.Integer, nullable=False)
     days_between_repot = db.Column(db.Integer, nullable=False)
     is_active = db.Column(db.Boolean, default=True)
 
