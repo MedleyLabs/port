@@ -50,6 +50,39 @@ def get_plant_names():
     return response
 
 
+@plant.route("/plant/status", methods=['GET'])
+def get_status():
+    """ Checks the status of water, repot, and fertilizer """
+
+    def extract_highest_status(status_names):
+        """ Finds the highest priority status from a list of statuses """
+
+        combined = '\t'.join(status_names)
+
+        if '🔴' in combined:
+            return '🔴'
+        if '🟡' in combined:
+            return '🟡'
+        if '🟢' in combined:
+            return '🟢'
+
+    water_status = get_water_status()
+    repot_status = get_repot_status()
+    fertilize_status = get_fertilize_status()
+
+    status = [
+        f'{extract_highest_status(water_status)} Water plants',
+        f'{extract_highest_status(fertilize_status)} Fertilize plants',
+        f'{extract_highest_status(repot_status)} Repot plants',
+    ]
+
+    response = jsonify(status)
+
+    return response
+
+
+
+
 @plant.route("/plant/status/fertilize", methods=['GET'])
 def get_fertilize_status():
     """ Returns a status emoji (green/yellow/red circle) plus its name """
@@ -63,8 +96,8 @@ def get_fertilize_status():
     for p in plants:
 
         entries = FertilizeEntry.query.filter(FertilizeEntry.plant_id == p.id) \
-                                  .order_by(FertilizeEntry.created_at.desc()) \
-                                  .all()
+                                      .order_by(FertilizeEntry.created_at.desc()) \
+                                      .all()
 
         current_date = datetime.now(timezone).date()
 
