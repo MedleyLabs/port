@@ -89,7 +89,7 @@ def get_plant_statuses():
             else:
                 status_emoji = '🟢'
 
-            status_name = status_emoji + p.name
+            status_name = f'{status_emoji} {p.name}'
             status_names.append(status_name)
 
         else:
