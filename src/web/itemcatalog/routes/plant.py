@@ -183,7 +183,7 @@ def create_plant():
     new_plant = Plant(
         name=r['name'],
         days_between_water=r['days_between_water'],
-        days_between_fertilizer=r['days_between_fertilizer'],
+        days_between_fertilize=r['days_between_fertilize'],
         days_between_repot=r['days_between_repot'],
         created_at=r['created_at']
     )
