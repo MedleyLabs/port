@@ -119,6 +119,7 @@ def get_fertilize_status():
         status_names.append(status_name)
 
     response = jsonify(status_names)
+    print(response)
 
     return response
 
