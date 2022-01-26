@@ -248,6 +248,8 @@ def create_water_entry():
 
     for name in plant_names:
 
+        name = name[2:]
+
         plant_id = Plant.query.filter(Plant.name == name).first().to_dict()['id']
 
         entry = WaterEntry(
