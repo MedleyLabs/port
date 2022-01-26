@@ -71,9 +71,9 @@ def get_status():
     fertilize_status = get_fertilize_status()
 
     status = [
-        f'{extract_highest_status(water_status)} Water plants',
-        f'{extract_highest_status(fertilize_status)} Fertilize plants',
-        f'{extract_highest_status(repot_status)} Repot plants',
+        f'{extract_highest_status(water_status.data)} Water plants',
+        f'{extract_highest_status(fertilize_status.data)} Fertilize plants',
+        f'{extract_highest_status(repot_status.data)} Repot plants',
     ]
 
     response = jsonify(status)
@@ -119,7 +119,7 @@ def get_fertilize_status():
         status_names.append(status_name)
 
     response = jsonify(status_names)
-    print(response)
+    print(response.data)
 
     return response
 
