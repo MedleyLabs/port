@@ -50,8 +50,8 @@ def get_plant_names():
     return response
 
 
-@plant.route("/plant/status/ferilize", methods=['GET'])
-def get_fertilizer_status():
+@plant.route("/plant/status/fertilize", methods=['GET'])
+def get_fertilize_status():
     """ Returns a status emoji (green/yellow/red circle) plus its name """
 
     print('Running GET /plant/status/fertilize...')
