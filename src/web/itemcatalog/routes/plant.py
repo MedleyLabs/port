@@ -51,7 +51,7 @@ def get_plant_names():
 
 
 @plant.route("/plant/status/ferilize", methods=['GET'])
-def get_plant_statuses():
+def get_fertilizer_status():
     """ Returns a status emoji (green/yellow/red circle) plus its name """
 
     print('Running GET /plant/status/fertilize...')
@@ -91,7 +91,7 @@ def get_plant_statuses():
 
 
 @plant.route("/plant/status/repot", methods=['GET'])
-def get_plant_statuses():
+def get_repot_status():
     """ Returns a status emoji (green/yellow/red circle) plus its name """
 
     print('Running GET /plant/status/repot...')
@@ -131,7 +131,7 @@ def get_plant_statuses():
 
 
 @plant.route("/plant/status/water", methods=['GET'])
-def get_plant_statuses():
+def get_water_status():
     """ Returns a status emoji (green/yellow/red circle) plus its name """
 
     print('Running GET /plant/status/water...')
