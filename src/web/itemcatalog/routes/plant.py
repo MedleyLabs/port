@@ -238,7 +238,7 @@ def snooze_care():
 
     care_type, plant_name = care_name.split(' - ')
 
-    plant_id = Plant.query.filter(Plant.name == plant_name).first()['id']
+    plant_id = Plant.query.filter(Plant.name == plant_name).first().id
 
     print('care_type:', care_type)
     print('plant_name:', plant_name)
