@@ -1,7 +1,6 @@
-import json
 import pytz
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import (
     Blueprint,
     jsonify,
@@ -198,17 +197,35 @@ def get_water_status():
     for p in plants:
 
         entries = WaterEntry.query.filter(WaterEntry.plant_id == p.id) \
-                                  .order_by(WaterEntry.created_at.desc()) \
+                                  .order_by(WaterEntry.chosen_date.desc()) \
                                   .all()
 
         current_date = datetime.now(timezone).date()
 
         if entries:
-            last_date = entries[-1].created_at.date()
-            date_delta = (current_date-last_date).days
+
+            last_entry = entries[-1]
+
+            print(last_entry.to_dict())
+
+            entry_type = last_entry.entry_type
+            chosen_date = last_entry.chosen_date.date()
+
+            if entry_type == 'care':
+                print('Last care')
+                last_date = chosen_date
+            elif entry_type == 'snooze':
+                print('Last snooze')
+                last_date = chosen_date + timedelta(days=last_entry.entry_value)
+            else:
+                raise ValueError(f'Invalid entry_type={entry_type}!')
+
         else:
-            created_date = p.created_at.date()
-            date_delta = (current_date-created_date).days
+            last_date = p.created_at.date()
+
+        print('last_date:', last_date)
+
+        date_delta = (current_date-last_date).days
 
         if date_delta > p.days_between_water:
             status_emoji = '🔴'

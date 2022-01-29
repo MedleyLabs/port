@@ -41,5 +41,6 @@ class WaterEntry(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False)
+    chosen_date = db.Column(db.DateTime(), nullable=False)
     entry_type = db.Column(db.String(32), nullable=False)
     entry_value = db.Column(db.Float)
