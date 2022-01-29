@@ -253,8 +253,8 @@ def snooze_care():
         entry = WaterEntry(
             plant_id=plant_id,
             created_at=r['created_at'],
-            care_type='snooze',
-            care_value=r['days_to_snooze']
+            entry_type='snooze',
+            entry_value=r['days_to_snooze']
         )
 
         db.session.add(entry)
