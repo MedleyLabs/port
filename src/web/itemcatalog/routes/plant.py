@@ -51,6 +51,23 @@ def get_plant_names():
     return response
 
 
+@plant.route("/plant/today", methods=['GET'])
+def get_today():
+    """ Returns the plant care scheduled to be done today """
+
+    print('Running GET /plant/today...')
+
+    status_fertilize = get_fertilize_status().json
+    status_repot = get_repot_status().json
+    status_water = get_water_status().json
+
+    status_all = (status_fertilize + status_repot + status_water)
+    status_all = [status for status in status_all if '🟢' not in status]
+    status_all.sort()
+
+    return status_all
+
+
 @plant.route("/plant/status", methods=['GET'])
 def get_status():
     """ Checks the status of water, repot, and fertilizer """
@@ -70,8 +87,6 @@ def get_status():
     water_status = get_water_status().json
     repot_status = get_repot_status().json
     fertilize_status = get_fertilize_status().json
-
-    print(water_status)
 
     status = [
         f'{extract_highest_status(water_status)} Water plants',
