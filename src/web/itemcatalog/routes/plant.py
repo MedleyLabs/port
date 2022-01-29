@@ -224,6 +224,36 @@ def get_water_status():
     return response
 
 
+@plant.route("/plant/snooze", methods=['POST'])
+def snooze_care():
+    """ Snoozes care for a set number of days """
+
+    print('Running POST /plant/snooze')
+
+    r = request.get_json()
+
+    print('Request data:', r)
+
+    care_name = r['care_name'][2:]
+
+    care_type, plant_name = care_name.split(' - ')
+
+    print('care_type:', care_type)
+    print('plant_name:', plant_name)
+
+    if care_type == 'Fertilize':
+        pass
+    elif care_type == 'Repot':
+        pass
+    elif care_type == 'Water':
+        pass
+    else:
+        raise ValueError(f'Invalid care_type={care_type}! Please choose from'
+                         f'Fertilize, Repot, or Water.')
+
+    return ''
+
+
 @plant.route("/plant/create", methods=['POST'])
 def create_plant():
     """ Creates a new plant """
