@@ -65,7 +65,7 @@ def get_today():
     status_all = [status for status in status_all if '🟢' not in status]
     status_all.sort()
 
-    return status_all
+    return jsonify(status_all)
 
 
 @plant.route("/plant/status", methods=['GET'])
