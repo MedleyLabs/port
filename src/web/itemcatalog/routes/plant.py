@@ -67,6 +67,7 @@ def get_today():
 
     status_all = (status_fertilize + status_repot + status_water)
     status_all = [status for status in status_all if '🟢' not in status]
+    status_all = [status for status in status_all if ' test ' not in status.lower()]
     status_all.sort()
 
     return jsonify(status_all)
