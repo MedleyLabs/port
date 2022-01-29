@@ -238,15 +238,28 @@ def snooze_care():
 
     care_type, plant_name = care_name.split(' - ')
 
+    plant_id = Plant.query.filter(Plant.name == plant_name).first()['id']
+
     print('care_type:', care_type)
     print('plant_name:', plant_name)
+    print('plant_id:', plant_id)
 
     if care_type == 'Fertilize':
         pass
     elif care_type == 'Repot':
         pass
     elif care_type == 'Water':
-        pass
+
+        entry = WaterEntry(
+            plant_id=plant_id,
+            created_at=r['created_at'],
+            care_type='snooze',
+            care_value=r['days_to_snooze']
+        )
+
+        db.session.add(entry)
+        db.session.commit()
+
     else:
         raise ValueError(f'Invalid care_type={care_type}! Please choose from'
                          f'Fertilize, Repot, or Water.')
