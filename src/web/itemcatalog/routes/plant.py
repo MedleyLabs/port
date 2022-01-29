@@ -61,6 +61,10 @@ def get_today():
     status_repot = get_repot_status().json
     status_water = get_water_status().json
 
+    status_fertilize = [s[:2] + 'Fertilize ' + s[2:] for s in status_fertilize]
+    status_repot = [s[:2] + 'Repot ' + s[2:] for s in status_repot]
+    status_water = [s[:2] + 'Water  ' + s[2:] for s in status_water]
+
     status_all = (status_fertilize + status_repot + status_water)
     status_all = [status for status in status_all if '🟢' not in status]
     status_all.sort()
