@@ -2,7 +2,7 @@
 
 # port
 
-A personal web server that empowers individuals with their data.
+Port is a personal web server that empowers individuals with their data. 
 
     Docker
     Python
@@ -13,6 +13,17 @@ A personal web server that empowers individuals with their data.
     Flask-Dance
     pip-env
     git
+    
+Port is similar to a shipping port for your data.
+    
+| Shipping Port | Port |
+| --- | --- |
+| Cargo ships deliver goods to it | Web services deliver data to it |
+| Goods can be stored for a long time | Data can be stored for a long time |
+| It can send goods to other shipping ports | It can send data to other port users |
+| It can distribute goods to local services | It can distribute data to web services |
+| It enables the further processing of goods | It enables the further processing of data |
+| Only the port owner knows what is in the containers | Only the data owner knows what is in the data |
 
 ## Installation
 
