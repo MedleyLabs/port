@@ -4,6 +4,8 @@
 
 Port is a personal web server that empowers individuals with their data. 
 
+It's still very early in the development and proof-of-concept stage. The current stack includes:
+
     Docker
     Python
     Flask
