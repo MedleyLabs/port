@@ -14,7 +14,7 @@ app.config.from_object('config.settings.' + os.environ['ENV'])
 login_manager = LoginManager(app)
 
 # Database
-from .models import db, user, category, item, plant, shortcut, ma # noqa:E401
+from .models import db, user, category, item, plant, shortcut, ma, substances
 db.create_all()
 db.session.commit()
 
@@ -29,21 +29,26 @@ db.session.commit()
 #         category.Category.seed(fake)
 
 
-# Blueprints
-from itemcatalog.routes.userauth import userauth # noqa:E401
-from itemcatalog.routes.category import category # noqa:E401
-from itemcatalog.routes.item import item # noqa:E401
-from itemcatalog.routes.main import main # noqa:E401
-from itemcatalog.routes.plant import plant # noqa:E401
-from itemcatalog.routes.shortcut import shortcut
-from itemcatalog.routes.errorhandlers import errorhandlers # noqa:E401
+# server.routes
+from server.routes.electrodermal import electrodermal
+from server.routes.userauth import userauth
+from server.routes.category import category
+from server.routes.item import item
+from server.routes.main import main
+from server.routes.plant import plant
+from server.routes.shortcut import shortcut
+from server.routes.substances import substances
+from server.routes.errorhandlers import errorhandlers
 
+# register_blueprint
+app.register_blueprint(electrodermal)
 app.register_blueprint(userauth)
 app.register_blueprint(category)
 app.register_blueprint(item)
 app.register_blueprint(main)
 app.register_blueprint(plant)
 app.register_blueprint(shortcut)
+app.register_blueprint(substances)
 app.register_blueprint(errorhandlers)
 
 if __name__ == '__main__':
