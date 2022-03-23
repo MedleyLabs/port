@@ -14,7 +14,7 @@ class ValidEnvironments(Enum):
 
 class Default:
     """Default Configuration that all environments will default to"""
-    APP_NAME = "port"
+    APP_NAME = "app"
     TESTING = True
     SECRET_KEY = os.environ.get("SECRET_KEY") or "A0Zr98jyX RHH!jmN]LWX/,?RT"
     ENV = os.environ.get("ENV") or ValidEnvironments.Development
