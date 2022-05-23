@@ -1,0 +1,4 @@
+default_gasoline_type: "85-Octane"
+
+# Unit conversions
+pounds_per_ton: 2000
