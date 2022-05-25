@@ -11,6 +11,6 @@ if __name__ == "__main__":
     debug = True
     threaded = True
 
-    logger.info(f'Running Flask app at {host}:{port} from wsgi.py...')
+    logger.info(f'Running Flask app at {host}:{port}...')
 
     app.run(host=host, port=port, debug=debug, threaded=threaded)
