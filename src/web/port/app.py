@@ -10,6 +10,8 @@ login_manager = LoginManager()
 db = SQLAlchemy()
 ma = Marshmallow()
 
+app = initialize_app()
+
 
 def initialize_app():
     """ Initializes the Flask app """
@@ -46,5 +48,4 @@ def initialize_app():
 
 
 if __name__ == '__main__':
-    app = initialize_app()
     app.run(host='0.0.0.0', port=8000)
