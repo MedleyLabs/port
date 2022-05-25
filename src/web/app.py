@@ -25,11 +25,11 @@ def initialize_app():
     with app.app_context():
 
         # Built-in routes
-        from .routes.category import category
-        from .routes.errorhandlers import errorhandlers
-        from .routes.main import main
-        from .routes.plugin import plugin
-        from .routes.userauth import userauth
+        from port.routes.category import category
+        from port.routes.errorhandlers import errorhandlers
+        from port.routes.main import main
+        from port.routes.plugin import plugin
+        from port.routes.userauth import userauth
 
         # Import routes here
 
