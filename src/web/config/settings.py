@@ -20,18 +20,9 @@ class Default:
     ENV = os.environ.get("ENV") or ValidEnvironments.Development
     SERVER = os.environ.get("SERVER") or 'localhost'
 
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:temp@postgres:5432/master"
+    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:password@localhost:5432/portdb"
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    GOOGLE_OAUTH_CLIENT_ID = ('718620819024-p79474kp950rtb6kobs8r6622akb6j62'
-                              '.apps.googleusercontent.com')
-    GOOGLE_OAUTH_CLIENT_SECRET = 'E2KqzJFHFRoPTm81Zwe5ifW7'
-    GOOGLE_OAUTH_CLIENT_SCOPE = [
-        "https://www.googleapis.com/auth/plus.me",
-        "https://www.googleapis.com/auth/userinfo.email",
-    ]
-    GOOGLE_OAUTH_CLIENT_USERINFO_URI = "/oauth2/v2/userinfo"
 
 
 class Development(Default):
