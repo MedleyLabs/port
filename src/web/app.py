@@ -10,8 +10,6 @@ login_manager = LoginManager()
 db = SQLAlchemy()
 ma = Marshmallow()
 
-app = initialize_app()
-
 
 def initialize_app():
     """ Initializes the Flask app """
@@ -45,6 +43,9 @@ def initialize_app():
         # Register blueprints here
 
     return app
+
+
+app = initialize_app()
 
 
 if __name__ == '__main__':
