@@ -3,7 +3,7 @@ LABEL maintainer "Eric Yates <eric@medleyagency.com>"
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
-    && apt-get -y install apt-utils gunicorn libpq-dev python3-dev \
+    && apt-get -y install apt-utils gunicorn libpq-dev python3-dev gcc \
     && apt-get autoremove -y \
     && apt-get clean all
 ENV INSTALL_PATH /usr/app/static
