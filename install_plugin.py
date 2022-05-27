@@ -18,7 +18,7 @@ def insert_to_script(text, marker, insertion):
 
 def main():
 
-    with open('src/web/port/__init__.py') as f:
+    with open('src/port/__init__.py') as f:
         script = f.read()
 
     directions = {
@@ -30,7 +30,7 @@ def main():
     for marker, insertion in directions.plugins():
         script = insert_to_script(script, marker, insertion)
 
-    with open('src/web/port/__init__.py', 'w') as f:
+    with open('src/port/__init__.py', 'w') as f:
         f.write(script)
 
 

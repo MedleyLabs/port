@@ -1,10 +1,9 @@
 from datetime import datetime
 from flask_login import UserMixin
 from flask_dance.consumer.backend.sqla import OAuthConsumerMixin
-from sqlalchemy import exc
 
 from port import db, login_manager
-from port.base_model import BaseModel
+from port.core.models import BaseModel
 
 
 @login_manager.user_loader
@@ -24,15 +23,6 @@ class User(BaseModel, UserMixin):
     is_primary = db.Column()
     time_inserted = db.Column(db.DateTime(), default=datetime.utcnow)
     time_updated = db.Column(db.DateTime(), default=datetime.utcnow)
-
-    @classmethod
-    def seed(cls, fake):
-        """class utility to create fake accounts to see the db"""
-        user = User(
-            name=fake.name(),
-            email=fake.email()
-        )
-        user.save()
 
 
 class UserAuth(BaseModel, OAuthConsumerMixin):

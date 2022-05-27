@@ -1,5 +1,12 @@
-from flask import (render_template, url_for, request,
-                   redirect, Blueprint, abort, flash)
+from flask import (
+    abort,
+    Blueprint,
+    flash,
+    redirect,
+    render_template,
+    request,
+    url_for
+)
 from flask_login import current_user, login_required
 from sqlalchemy import func
 

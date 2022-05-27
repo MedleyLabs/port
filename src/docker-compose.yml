@@ -1,21 +1,20 @@
 version: '3.7'
 
 services:
-  postgres:
-    build: ./postgres
+
+  nginx:
+    build: ./nginx
     restart: always
     volumes:
-      - ./db:/var/lib/postgresql
+      - /www/static
     ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_DB: 'portdb'
-      POSTGRES_USER: 'admin'
-      POSTGRES_PASSWORD: 'password'
+      - "80:80"
+    depends_on:
+      - web
 
-  web:
+  port:
     restart: always
-    build: ./web
+    build: ./port
     environment:
       ENV: "Development"
       PYTHONUNBUFFERED: 1
@@ -35,14 +34,16 @@ services:
     env_file: .env
     command: gunicorn -w 2 -b :8000 app:app
 
-  nginx:
-    build: ./nginx
+  postgres:
+    build: ./postgres
     restart: always
     volumes:
-      - /www/static
+      - ./db:/var/lib/postgresql
     ports:
-      - "80:80"
-    depends_on:
-      - web
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: 'portdb'
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'password'
 
   

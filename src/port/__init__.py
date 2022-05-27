@@ -21,12 +21,12 @@ def initialize_app():
 
     with app.app_context():
 
-        # Built-in routes
-        from port.core.routes.category import category
-        from port.core.routes.errorhandlers import errorhandlers
-        from port.core.routes.main import main
-        from port.core.routes.plugin import plugin
-        from port.core.routes.userauth import userauth
+        # Built-in routes (import here to avoid circular dependencies)
+        from port.core.routes import category
+        from port.core.routes import errorhandlers
+        from port.core.routes import main
+        from port.core.routes import plugin
+        from port.core.routes import userauth
 
         # Import routes here
         from port.plugins.carbon_offset.routes import carbon_offset
@@ -42,10 +42,3 @@ def initialize_app():
         app.register_blueprint(carbon_offset)
 
     return app
-
-
-app = initialize_app()
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)

@@ -54,3 +54,20 @@ docker-compose down -v
 ## Acknowledgements
 
 Huge shout out to [@ericguu](https://github.com/ericcgu) for his repo [Flask-Gunicorn-Nginx-Postgres-Docker](https://github.com/ericcgu/Flask-Gunicorn-Nginx-Postgres-Docker). It only took me 5 minutes to get a basic server up and running, and I find that it's quite easily extensible also.
+
+
+## Principles
+
+Do not make assumptions about users. Allow them to customize to their needs.
+
+    - What currency do you use? USD, Euro, etc
+    - Do you want to use Venmo or Apple Pay?
+
+Each plugin must manage all of its downstream variables. 
+
+    - Database migrations for the plugin schema
+
+
+## TODO
+
+Refactor port to replace the "web" service
