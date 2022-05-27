@@ -1,6 +1,3 @@
-import sys
-sys.path.insert(0, '/home/eric/port/src')  # TODO REMOVE
-
 from port import initialize_app
 
 app = initialize_app()
