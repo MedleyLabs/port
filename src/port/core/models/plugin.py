@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from port import db, ma
-from port.core.models import BaseModel
+from ... import db, ma
+from ...core.models import BaseModel
 
 
 class Plugin(BaseModel):

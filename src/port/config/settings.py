@@ -1,5 +1,4 @@
 import os
-import pytz
 
 from enum import Enum
 

@@ -1,6 +1,6 @@
 from sqlalchemy import exc
 
-from port import db
+from ... import db
 
 
 def get_plugin_id(plugin_name):
