@@ -14,9 +14,6 @@ from .models import (
     GasolinePurchase
 )
 
-db.drop_all()
-db.create_all()
-
 carbon_offset = Blueprint('carbon_offset', __name__)
 
 default_octane = config['default_octane']
