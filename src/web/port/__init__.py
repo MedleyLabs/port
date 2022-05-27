@@ -29,7 +29,7 @@ def initialize_app():
         from port.core.routes import userauth
 
         # Import routes here
-        from plugins.carbon_offset.routes import carbon_offset
+        from port.carbon_offset.routes import carbon_offset
 
         # Built-in blueprints
         app.register_blueprint(category)
