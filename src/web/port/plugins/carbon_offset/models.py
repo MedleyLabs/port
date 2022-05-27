@@ -1,4 +1,4 @@
-from port import app, db
+from port import db
 from port.models.base_model import BaseModel
 
 from .exceptions import PaymentError
