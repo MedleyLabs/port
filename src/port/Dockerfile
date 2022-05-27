@@ -11,6 +11,6 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 COPY requirements.txt .
 RUN pip install --upgrade pip -r requirements.txt
-COPY ../port .
+COPY . .
 
 CMD ["/web/entrypoint.sh"]
