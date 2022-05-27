@@ -1,5 +1,5 @@
-from port import db
-from port.core.models import BaseModel
+from ..port import db
+from ..port.core.models import BaseModel
 
 
 class Shortcut(BaseModel):

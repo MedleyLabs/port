@@ -22,14 +22,14 @@ def initialize_app():
     with app.app_context():
 
         # Built-in routes (import here to avoid circular dependencies)
-        from port.core.routes import category
-        from port.core.routes import errorhandlers
-        from port.core.routes import main
-        from port.core.routes import plugin
-        from port.core.routes import userauth
+        from ..port.core.routes import category
+        from ..port.core.routes import errorhandlers
+        from ..port.core.routes import main
+        from ..port.core.routes import plugin
+        from ..port.core.routes import userauth
 
         # Import routes here
-        from port.plugins.carbon_offset.routes import carbon_offset
+        from ..port.plugins.carbon_offset.routes import carbon_offset
 
         # Built-in blueprints
         app.register_blueprint(category)

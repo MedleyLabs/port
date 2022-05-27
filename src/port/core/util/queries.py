@@ -1,4 +1,4 @@
-from port.core.models import Plugin
+from ..port.core.models import Plugin
 
 
 def get_active_plugins():
