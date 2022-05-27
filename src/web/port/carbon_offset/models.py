@@ -93,18 +93,27 @@ try:
 except Exception:
     pass
 
-GasolinePurchase.__table__.create(db.session.bind)
+try:
+    GasolinePurchase.__table__.create(db.session.bind)
+except Exception:
+    pass
 
 try:
     CarbonEmission.__table__.drop(db.session.bind)
 except Exception:
     pass
 
-CarbonEmission.__table__.create(db.session.bind)
+try:
+    CarbonEmission.__table__.create(db.session.bind)
+except Exception:
+    pass
 
 try:
     CarbonOffset.__table__.drop(db.session.bind)
 except Exception:
     pass
 
-CarbonOffset.__table__.create(db.session.bind)
+try:
+    CarbonOffset.__table__.create(db.session.bind)
+except Exception:
+    pass
