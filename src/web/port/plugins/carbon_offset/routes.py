@@ -16,7 +16,7 @@ from .models import (
     GasolinePurchase
 )
 
-db.create_all()
+# db.create_all()
 
 carbon_offset = Blueprint('carbon_offset', __name__)
 
