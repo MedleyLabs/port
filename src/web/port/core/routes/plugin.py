@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import func
 
 from port import db
-from port.models.plugin import Plugin
+from port.core.models import Plugin
 # from port.forms.plugin import PluginForm
 
 plugin = Blueprint('plugin', __name__)

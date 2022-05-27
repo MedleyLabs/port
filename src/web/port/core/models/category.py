@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from port import db, ma
-from port.models.base_model import BaseModel
+from port.core.models.base_model import BaseModel
 
 
 class Category(BaseModel):

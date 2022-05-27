@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from port.models.category import Category
+from port.core.models.category import Category
 
 
 category = Blueprint('category', __name__)

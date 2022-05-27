@@ -1,6 +1,3 @@
-import os
-import sys
-
 from flask import Flask
 from flask_login import LoginManager
 from flask_marshmallow import Marshmallow
@@ -25,11 +22,11 @@ def initialize_app():
     with app.app_context():
 
         # Built-in routes
-        from port.routes.category import category
-        from port.routes.errorhandlers import errorhandlers
-        from port.routes.main import main
-        from port.routes.plugin import plugin
-        from port.routes.userauth import userauth
+        from port.core.routes.category import category
+        from port.core.routes.errorhandlers import errorhandlers
+        from port.core.routes.main import main
+        from port.core.routes.plugin import plugin
+        from port.core.routes.userauth import userauth
 
         # Import routes here
         from port.plugins.carbon_offset.routes import carbon_offset
