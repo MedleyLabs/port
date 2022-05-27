@@ -67,7 +67,7 @@ class CarbonOffset(BaseModel):
     total_cost = db.Column(db.Float, nullable=False)
 
     @classmethod
-    def create(cls, pounds_co2, carbon_emission_id=None):
+    def create(cls, pounds_co2, carbon_emission_id):
 
         total_cost = pounds_co2/cls.pounds_per_ton * cls.dollars_per_ton_co2
 
@@ -89,8 +89,5 @@ class CarbonOffset(BaseModel):
         print(f'Sent ${total_cost} to {destination}...')
 
 
-
-
-
-
-
+db.drop_all()
+db.create_all()
