@@ -7,7 +7,7 @@ from flask import (
     request,
 )
 
-from . import config
+from .config import config
 from .models import (
     CarbonEmission,
     CarbonOffset,
