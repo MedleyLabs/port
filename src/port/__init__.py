@@ -1,13 +1,8 @@
-import os
-import sys
-
 from flask import Flask
 from flask_login import LoginManager
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 login_manager = LoginManager()
 db = SQLAlchemy()
@@ -28,14 +23,14 @@ def initialize_app():
     with app.app_context():
 
         # Built-in routes (import here to avoid circular dependencies)
-        from port.core.routes import category
-        from port.core.routes import errorhandlers
-        from port.core.routes import main
-        from port.core.routes import plugin
-        from port.core.routes import userauth
+        from src.port.core.routes import category
+        from src.port.core.routes import errorhandlers
+        from src.port.core.routes import main
+        from src.port.core.routes import plugin
+        from src.port.core.routes import userauth
 
         # Import routes here
-        from port.plugins.carbon_offset.routes import carbon_offset
+        from src.port.plugins.carbon_offset.routes import carbon_offset
 
         # Built-in blueprints
         app.register_blueprint(category)

@@ -2,8 +2,8 @@ from datetime import datetime
 from flask_login import UserMixin
 from flask_dance.consumer.backend.sqla import OAuthConsumerMixin
 
-from port import db, login_manager
-from port.core.models import BaseModel
+from src.port import db, login_manager
+from src.port.core.models import BaseModel
 
 
 @login_manager.user_loader

@@ -2,6 +2,8 @@
 
 # port
 
+Port is like a shipping port for your data. Completely controlled by you. Completely private to you.
+
 Port is a personal web server that empowers individuals with their data. 
 
 It's still very early in the development and proof-of-concept stage. The current stack includes:

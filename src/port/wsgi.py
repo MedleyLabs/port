@@ -1,4 +1,4 @@
-from port import initialize_app
+from src.port import initialize_app
 
 
 app = initialize_app()
