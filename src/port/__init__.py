@@ -6,7 +6,7 @@ from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 
 
-sys.path.insert(0, '/home/eric/port/src/port')  # TODO REMOVE
+sys.path.insert(0, '/home/eric/port/src')  # TODO REMOVE
 
 login_manager = LoginManager()
 db = SQLAlchemy()
