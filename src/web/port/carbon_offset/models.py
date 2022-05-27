@@ -88,6 +88,11 @@ class CarbonOffset(BaseModel):
     def send_payment(cls, total_cost, destination='The Carbon Offset Company'):
         print(f'Sent ${total_cost} to {destination}...')
 
+GasolinePurchase.__table__.drop(db.session.bind)
+GasolinePurchase.__table__.create(db.session.bind)
 
-db.drop_all()
-db.create_all()
+CarbonEmission.__table__.drop(db.session.bind)
+CarbonEmission.__table__.create(db.session.bind)
+
+CarbonOffset.__table__.drop(db.session.bind)
+CarbonOffset.__table__.create(db.session.bind)
