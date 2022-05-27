@@ -112,8 +112,8 @@ class CarbonOffset(BaseModel):
 #     CarbonOffset.__table__.drop(db.session.bind)
 # except Exception:
 #     pass
-
-try:
-    CarbonOffset.__table__.create(db.session.bind)
-except Exception:
-    pass
+#
+# try:
+#     CarbonOffset.__table__.create(db.session.bind)
+# except Exception:
+#     pass
