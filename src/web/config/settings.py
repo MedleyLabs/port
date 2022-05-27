@@ -20,7 +20,7 @@ class Default:
     ENV = os.environ.get("ENV") or ValidEnvironments.Development
     SERVER = os.environ.get("SERVER") or 'localhost'
 
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:password@postgres:5432/portdb"
+    SQLALCHEMY_DATABASE_URI = "postgresql://admin:password@postgres:5432/portdb"
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
