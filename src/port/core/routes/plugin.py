@@ -10,9 +10,9 @@ from flask import (
 from flask_login import current_user, login_required
 from sqlalchemy import func
 
-from src.port import db
-from src.port.core.models import Plugin
-# from src.port.forms.plugin import PluginForm
+from port import db
+from port.core.models import Plugin
+# from port.forms.plugin import PluginForm
 
 plugin = Blueprint('plugin', __name__)
 

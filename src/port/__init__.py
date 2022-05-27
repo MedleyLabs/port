@@ -1,8 +1,12 @@
+import sys
+
 from flask import Flask
 from flask_login import LoginManager
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 
+
+sys.path.insert(0, '/home/eric/port/src/port')  # TODO REMOVE
 
 login_manager = LoginManager()
 db = SQLAlchemy()
@@ -23,14 +27,14 @@ def initialize_app():
     with app.app_context():
 
         # Built-in routes (import here to avoid circular dependencies)
-        from src.port.core.routes import category
-        from src.port.core.routes import errorhandlers
-        from src.port.core.routes import main
-        from src.port.core.routes import plugin
-        from src.port.core.routes import userauth
+        from port.core.routes import category
+        from port.core.routes import errorhandlers
+        from port.core.routes import main
+        from port.core.routes import plugin
+        from port.core.routes import userauth
 
         # Import routes here
-        from src.port.plugins.carbon_offset.routes import carbon_offset
+        from port.plugins.carbon_offset.routes import carbon_offset
 
         # Built-in blueprints
         app.register_blueprint(category)
