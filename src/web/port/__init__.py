@@ -39,6 +39,6 @@ def initialize_app():
         app.register_blueprint(userauth)
 
         # Register blueprints here
-        app.register_blueprint(carbon_offset)
+        # app.register_blueprint(carbon_offset)
 
     return app
