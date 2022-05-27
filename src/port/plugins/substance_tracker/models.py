@@ -1,5 +1,5 @@
-from src.web.port.models import db
-from src.web.port.models.base_model import BaseModel
+from port import db
+from port.core.models import BaseModel
 
 
 class Entry(BaseModel):

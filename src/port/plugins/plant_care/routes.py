@@ -7,8 +7,8 @@ from flask import (
     request,
 )
 
-from server import db
-from server.models.plant import (
+from port import db
+from port.plugins.plant_care.models import (
     Plant,
     FertilizeEntry,
     RepotEntry,

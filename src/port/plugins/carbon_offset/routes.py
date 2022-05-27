@@ -7,8 +7,6 @@ from flask import (
     request,
 )
 
-from port import db
-
 from .config import config
 from .models import (
     CarbonEmission,
@@ -16,11 +14,7 @@ from .models import (
     GasolinePurchase
 )
 
-# db.create_all()
-
 carbon_offset = Blueprint('carbon_offset', __name__)
-
-timezone = pytz.timezone('US/Mountain')
 
 default_octane = config['default_octane']
 

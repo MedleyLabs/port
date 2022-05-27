@@ -4,8 +4,8 @@ from flask import (
     request,
 )
 
-from server import db
-from server.models.substance import (
+from port import db
+from port.plugins.substance_tracker.models import (
     Entry,
     Route,
     Substance,

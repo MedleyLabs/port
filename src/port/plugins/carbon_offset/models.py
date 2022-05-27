@@ -1,5 +1,5 @@
 from port import db
-from port.models.base_model import BaseModel
+from port.core.models import BaseModel
 
 from .exceptions import PaymentError
 
@@ -45,9 +45,11 @@ class CarbonEmission(BaseModel):
     @classmethod
     def create(cls, number_of_gallons, octane=87, gasoline_purchase_id=None):
 
-        pounds_carbon_per_gallon = cls.pounds_gasoline_per_gallon * octane
+        pounds_carbon_per_gallon = cls.pounds_gasoline_per_gallon * octane/100
         pounds_co2_per_gallon = pounds_carbon_per_gallon * cls.co2_to_carbon_weight_ratio
         pounds_co2 = pounds_co2_per_gallon * number_of_gallons
+
+        print(f'Carbon emission: {pounds_co2} pounds CO2')
 
         obj = cls(pounds_co2=pounds_co2, gasoline_purchase_id=gasoline_purchase_id)
         db.session.add(obj)
@@ -58,24 +60,27 @@ class CarbonEmission(BaseModel):
 
 class CarbonOffset(BaseModel):
 
-    dollars_per_ton_co2 = 50  # TODO Make it so this can vary over time
+    dollars_per_ton_co2 = 10
     pounds_per_ton = 2000
+
+    carbon_emission_id = db.Column(db.Integer, db.ForeignKey('carbon_emission.id'))
+    total_cost = db.Column(db.Float, nullable=False)
 
     @classmethod
     def create(cls, pounds_co2, carbon_emission_id=None):
 
         total_cost = pounds_co2/cls.pounds_per_ton * cls.dollars_per_ton_co2
 
+        print(f'Total cost: ${total_cost}')
+
+        obj = cls(carbon_emission_id=carbon_emission_id, total_cost=total_cost)
+        db.session.add(obj)
+        db.session.commit()
+
         try:
             cls.send_payment(total_cost)
         except PaymentError as e:
             print(e)
-
-        obj = cls(pounds_co2=pounds_co2, total_cost=total_cost, carbon_emission_id=carbon_emission_id)
-        db.session.add(obj)
-        db.session.commit()
-
-        cls.send_payment(total_cost)
 
         return obj
 
