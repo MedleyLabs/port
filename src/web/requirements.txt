@@ -23,6 +23,7 @@ psycopg2-binary
 python-dateutil==2.7.3
 python-dotenv==0.9.1
 pytz
+pyyaml
 requests==2.19.1
 requests-oauthlib==1.0.0
 six==1.11.0
