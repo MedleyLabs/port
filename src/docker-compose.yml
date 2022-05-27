@@ -10,11 +10,11 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - port
+      - port-service
 
-  port:
+  port-service:
     restart: always
-    build: ./port
+    build: port-service
     environment:
       ENV: "Development"
       PYTHONUNBUFFERED: 1
