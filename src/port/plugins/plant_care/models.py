@@ -1,5 +1,5 @@
-from ..port import db, ma
-from ..port.core.models import BaseModel
+from port import db, ma
+from port.core.models import BaseModel
 
 
 class Plant(BaseModel):

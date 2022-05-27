@@ -4,8 +4,8 @@ from flask import (
     request,
 )
 
-from ..port import db
-from ..port.plugins.shortcut_manager.models import (
+from port import db
+from port.plugins.shortcut_manager.models import (
     Shortcut,
     ShortcutDependencies,
 )
