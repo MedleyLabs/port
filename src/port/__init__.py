@@ -1,7 +1,13 @@
+import os
+import sys
+
 from flask import Flask
 from flask_login import LoginManager
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 login_manager = LoginManager()
 db = SQLAlchemy()
