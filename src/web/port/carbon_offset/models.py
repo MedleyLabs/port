@@ -61,11 +61,12 @@ class CarbonEmission(BaseModel):
     pounds_co2 = db.Column(db.Float, nullable=False)
 
     @classmethod
-    def create(cls, number_of_gallons, octane=87, gasoline_purchase_id=None):
+    def create(cls, number_of_gallons, octane=87, gasoline_purchase_id=None, sig_figs=2):
 
         pounds_carbon_per_gallon = cls.pounds_gasoline_per_gallon * octane/100
         pounds_co2_per_gallon = pounds_carbon_per_gallon * cls.co2_to_carbon_weight_ratio
         pounds_co2 = number_of_gallons * (pounds_co2_per_gallon + cls.well_to_tank_pounds_co2_per_gallon)
+        pounds_co2 = round(pounds_co2, sig_figs)
 
         print(f'Carbon emission: {pounds_co2} pounds CO2')
 
@@ -85,9 +86,10 @@ class CarbonOffset(BaseModel):
     total_cost = db.Column(db.Float, nullable=False)
 
     @classmethod
-    def create(cls, pounds_co2, carbon_emission_id):
+    def create(cls, pounds_co2, carbon_emission_id, sig_figs=2):
 
         total_cost = pounds_co2/cls.pounds_per_ton * cls.dollars_per_ton_co2
+        total_cost = round(total_cost, sig_figs)
 
         print(f'Total cost: ${total_cost}')
 
