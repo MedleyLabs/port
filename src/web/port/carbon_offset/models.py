@@ -57,8 +57,8 @@ class CarbonEmission(BaseModel):
     co2_to_carbon_weight_ratio = co2_atomic_weight / carbon_atomic_weight
 
     id = db.Column(db.Integer, primary_key=True)
-    pounds_co2 = db.Column(db.Float, nullable=False)
     gasoline_purchase_id = db.Column(db.Integer, db.ForeignKey('gasoline_purchase.id'))
+    pounds_co2 = db.Column(db.Float, nullable=False)
 
     @classmethod
     def create(cls, number_of_gallons, octane=87, gasoline_purchase_id=None):

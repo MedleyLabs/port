@@ -51,7 +51,10 @@ def gasoline_purchase():
         carbon_emission_id=emission.id
     )
 
-    print(f'Finished! offset.id={offset.id}')
+    response = {
+        'pounds_co2': emission.pounds_co2,
+        'offset_cost': offset.total_cost
+    }
 
-    return f'Your purchase created {emission.pounds_co2} pounds of CO2!'
+    return response
 
