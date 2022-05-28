@@ -61,11 +61,11 @@ class CarbonEmission(BaseModel):
     gasoline_purchase_id = db.Column(db.Integer, db.ForeignKey('gasoline_purchase.id'))
 
     @classmethod
-    def create(cls, gallons, octane=87, gasoline_purchase_id=None):
+    def create(cls, number_of_gallons, octane=87, gasoline_purchase_id=None):
 
         pounds_carbon_per_gallon = cls.pounds_gasoline_per_gallon * octane/100
         pounds_co2_per_gallon = pounds_carbon_per_gallon * cls.co2_to_carbon_weight_ratio
-        pounds_co2 = gallons * (pounds_co2_per_gallon + cls.well_to_tank_pounds_co2_per_gallon)
+        pounds_co2 = number_of_gallons * (pounds_co2_per_gallon + cls.well_to_tank_pounds_co2_per_gallon)
 
         print(f'Carbon emission: {pounds_co2} pounds CO2')
 
