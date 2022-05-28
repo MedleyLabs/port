@@ -56,5 +56,8 @@ def gasoline_purchase():
         'offset_cost': offset.total_cost
     })
 
+    print('Pounds CO2:', emission.pounds_co2)
+    print('Cost to Offset:', offset.total_cost)
+
     return response
 
