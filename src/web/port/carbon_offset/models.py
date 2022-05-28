@@ -79,7 +79,7 @@ class CarbonEmission(BaseModel):
 
 class CarbonOffset(BaseModel):
 
-    dollars_per_ton_co2 = 10
+    dollars_per_ton_co2 = 20
     pounds_per_ton = 2000
 
     carbon_emission_id = db.Column(db.Integer, db.ForeignKey('carbon_emission.id'))
