@@ -51,10 +51,10 @@ def gasoline_purchase():
         carbon_emission_id=emission.id
     )
 
-    response = {
+    response = jsonify({
         'pounds_co2': emission.pounds_co2,
         'offset_cost': offset.total_cost
-    }
+    })
 
     return response
 
