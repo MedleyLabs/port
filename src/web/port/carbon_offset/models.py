@@ -31,14 +31,14 @@ class CarbonEmission(BaseModel):
     """
     An amount of carbon emitted from burning gasoline
 
-    Source below for the well-to-tank emissions factor, which is how much CO2 is produced from the following process:
+    The well-to-tank emissions factor is how much CO2 is produced from the following process:
 
         1. Extracting crude oil from a well
         2. Shipping the crude oil to a refinery
         3. Refining the crude oil into gasoline
         4. Shipping the gasoline to a gas station
 
-    https://innovationorigins.com/en/producing-gasoline-and-diesel-emits-more-co2-than-we-thought/
+    Source: https://innovationorigins.com/en/producing-gasoline-and-diesel-emits-more-co2-than-we-thought/
     """
 
     __tablename__ = 'carbon_emission'

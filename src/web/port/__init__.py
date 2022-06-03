@@ -28,9 +28,6 @@ def initialize_app():
         from port.core.routes import plugin
         from port.core.routes import userauth
 
-        # Import routes here
-        from port.carbon_offset.routes import carbon_offset
-
         # Built-in blueprints
         app.register_blueprint(category)
         app.register_blueprint(errorhandlers)
@@ -38,7 +35,10 @@ def initialize_app():
         app.register_blueprint(plugin)
         app.register_blueprint(userauth)
 
-        # Register blueprints here
-        app.register_blueprint(carbon_offset)
+        from port.carbon_offset.routes import carbon_offset
+        plugin_blueprints = [carbon_offset]
+
+        for blueprint in plugin_blueprints:
+            app.register_blueprint(blueprint)
 
     return app
