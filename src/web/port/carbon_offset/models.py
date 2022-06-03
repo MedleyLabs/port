@@ -94,32 +94,32 @@ class CarbonOffset(BaseModel):
         return obj
 
 
-try:
-    GasolinePurchase.__table__.drop(db.session.bind)
-except Exception:
-    pass
-
-try:
-    GasolinePurchase.__table__.create(db.session.bind)
-except Exception:
-    pass
-
-try:
-    CarbonEmission.__table__.drop(db.session.bind)
-except Exception:
-    pass
-
-try:
-    CarbonEmission.__table__.create(db.session.bind)
-except Exception:
-    pass
-
-try:
-    CarbonOffset.__table__.drop(db.session.bind)
-except Exception:
-    pass
-
-try:
-    CarbonOffset.__table__.create(db.session.bind)
-except Exception:
-    pass
+# try:
+#     GasolinePurchase.__table__.drop(db.session.bind)
+# except Exception:
+#     pass
+#
+# try:
+#     GasolinePurchase.__table__.create(db.session.bind)
+# except Exception:
+#     pass
+#
+# try:
+#     CarbonEmission.__table__.drop(db.session.bind)
+# except Exception:
+#     pass
+#
+# try:
+#     CarbonEmission.__table__.create(db.session.bind)
+# except Exception:
+#     pass
+#
+# try:
+#     CarbonOffset.__table__.drop(db.session.bind)
+# except Exception:
+#     pass
+#
+# try:
+#     CarbonOffset.__table__.create(db.session.bind)
+# except Exception:
+#     pass
