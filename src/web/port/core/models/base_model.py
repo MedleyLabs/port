@@ -19,13 +19,11 @@ class BaseModel(db.Model):
     def all(cls):
 
         models = cls.query.all()
-        print('cls', cls)
-        print('models', models)
 
         for model in models:
-            print('hayyyy', model.__dict__)
+            print('hayyyy', model.to_dict())
 
-        return [model.__dict__ for model in cls.query.all()]
+        return [model.to_dict(include_instance_state=False) for model in cls.query.all()]
 
     @classmethod
     def create(cls, **kwargs):
@@ -48,6 +46,7 @@ class BaseModel(db.Model):
         except exc.IntegrityError:
             db.session.rollback()
 
-    def to_dict(self):
+    def to_dict(self, include_instance_state=True):
         """ Return a dictionary representation of this model. """
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns
+                if include_instance_state or c.name != '_sa_instance_state'}
