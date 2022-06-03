@@ -17,12 +17,6 @@ class BaseModel(db.Model):
 
     @classmethod
     def all(cls):
-
-        models = cls.query.all()
-
-        for model in models:
-            print('hayyyy', model.to_dict())
-
         return [model.to_dict(include_instance_state=False) for model in cls.query.all()]
 
     @classmethod
