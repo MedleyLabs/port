@@ -19,6 +19,21 @@ carbon_offset = Blueprint('carbon_offset', __name__)
 default_octane = config['default_octane']
 
 
+@carbon_offset.route('/carbon_offset/gasoline_purchase', methods=['GET'])
+def get_gasoline_purchases():
+    return GasolinePurchase.query.all()
+
+
+@carbon_offset.route('/carbon_offset/carbon_emission', methods=['GET'])
+def get_carbon_emissions():
+    return CarbonEmission.query.all()
+
+
+@carbon_offset.route('/carbon_offset/carbon_offset', methods=['GET'])
+def get_carbon_offsets():
+    return CarbonOffset.query.all()
+
+
 @carbon_offset.route('/carbon_offset/gasoline_purchase', methods=['POST'])
 def gasoline_purchase():
     """ """
@@ -60,4 +75,3 @@ def gasoline_purchase():
     print('Cost to Offset:', offset.total_cost)
 
     return response
-
