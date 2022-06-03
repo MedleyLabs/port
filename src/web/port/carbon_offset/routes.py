@@ -21,10 +21,7 @@ default_octane = config['default_octane']
 
 @carbon_offset.route('/carbon_offset/gasoline_purchase', methods=['GET'])
 def get_gasoline_purchases():
-    print(GasolinePurchase.all())
-    print(jsonify(GasolinePurchase.all())
-)
-    return jsonify(GasolinePurchase.all())
+    return GasolinePurchase.all()
 
 
 @carbon_offset.route('/carbon_offset/carbon_emission', methods=['GET'])
