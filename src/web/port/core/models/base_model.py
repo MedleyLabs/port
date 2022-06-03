@@ -16,6 +16,10 @@ class BaseModel(db.Model):
     updated_on = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
     @classmethod
+    def all(cls):
+        return [model.__dict__ for model in cls.query.all()]
+
+    @classmethod
     def create(cls, **kwargs):
         obj = cls(**kwargs)
         db.session.add(obj)
