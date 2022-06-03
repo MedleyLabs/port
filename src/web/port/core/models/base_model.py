@@ -17,6 +17,14 @@ class BaseModel(db.Model):
 
     @classmethod
     def all(cls):
+
+        models = cls.query.all()
+        print('cls', cls)
+        print('models', models)
+
+        for model in models:
+            print('hayyyy', model.__dict__)
+
         return [model.__dict__ for model in cls.query.all()]
 
     @classmethod
