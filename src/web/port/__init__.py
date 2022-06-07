@@ -3,6 +3,8 @@ from flask_login import LoginManager
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 
+from port.system.files import import_plugins
+
 login_manager = LoginManager()
 db = SQLAlchemy()
 ma = Marshmallow()
@@ -21,24 +23,27 @@ def initialize_app():
 
     with app.app_context():
 
-        # Built-in routes (import here to avoid circular dependencies)
-        from port.core.routes import category
-        from port.core.routes import errorhandlers
-        from port.core.routes import main
-        from port.core.routes import plugin
-        from port.core.routes import userauth
+        # Routes must be imported here to avoid circular dependencies
+        from port.routes import (
+            category,
+            errorhandlers,
+            main,
+            plugin,
+            auth
+        )
 
-        # Built-in blueprints
         app.register_blueprint(category)
         app.register_blueprint(errorhandlers)
         app.register_blueprint(main)
         app.register_blueprint(plugin)
-        app.register_blueprint(userauth)
+        app.register_blueprint(auth)
 
-        from port.carbon_offset.routes import carbon_offset
-        plugin_blueprints = [carbon_offset]
+        # import_plugins()
+        # register_blueprints()
 
-        for blueprint in plugin_blueprints:
-            app.register_blueprint(blueprint)
+        # plugin_blueprints = find_plugin_blueprints()
+        #
+        # for blueprint in plugin_blueprints:
+        #     app.register_blueprint(blueprint)
 
     return app
