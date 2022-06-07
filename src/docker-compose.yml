@@ -32,7 +32,7 @@ services:
     volumes:
       - .:/usr/src/app/static
     env_file: .env
-    command: gunicorn -w 2 -b :8000 wsgi:app
+    command: gunicorn -w 2 -b :8000 localhost:app
 
   postgres:
     build: ./postgres
